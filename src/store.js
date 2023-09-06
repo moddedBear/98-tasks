@@ -3,6 +3,7 @@ import { reactive } from 'vue'
 export const store = reactive({
     windows: [],
     nextWindowId: 0,
+    tasks: [],
     spawnWindow() {
         const id = this.takeWindowId()
         const props = {
