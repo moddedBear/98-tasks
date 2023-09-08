@@ -1,6 +1,8 @@
 <script setup>
-    import { ref } from 'vue';
+    import { computed, ref } from 'vue'
     import TaskGeneral from '../tabs/TaskGeneral.vue'
+    import TaskTimeLog from '../tabs/TaskTimeLog.vue'
+    import { store } from '../../store'
 
     const props = defineProps({
         taskId: {
@@ -9,13 +11,22 @@
         }
     })
 
+    const task = computed(() => {
+        return store.tasks.find((i) => i.id === props.taskId)
+    })
     const activeTab = ref(0)
-    const tabs = [
-        {
-            name: "General",
-            content: TaskGeneral
-        },
-    ]
+    const tabs = computed(() => {
+        return [
+            {
+                name: 'General',
+                content: TaskGeneral
+            },
+            {
+                name: `Time Log (${task.value.hours} hrs)`,
+                content: TaskTimeLog
+            },
+        ]
+    })
 </script>
 
 <template>
@@ -28,3 +39,9 @@
         </div>
     </div>
 </template>
+
+<style scoped>
+    li {
+        cursor: pointer;
+    }
+</style>

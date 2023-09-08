@@ -73,8 +73,6 @@
     }
     function close() {
         const index = store.windows.findIndex((window) => {
-            console.log(props.id)
-            console.log(toRaw(window).id)
             return toRaw(window).id === props.id
         })
         if (index === -1) console.error('ah geez')
