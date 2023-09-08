@@ -33,24 +33,29 @@
 </script>
 
 <template>
-    <div class="field-row-stacked">
-        <label for="title">Title</label>
-        <p v-if="!isEditing">{{ task.title }}</p>
-        <input type="text" v-else v-model="editTitle" id="title"/>
+    <p v-if="!isEditing">{{ task.title }}</p>
+    <div v-else>
+        <div class="field-row-stacked">
+            <label for="title">Title</label>
+            <input type="text" v-model="editTitle" id="title"/>
+        </div>
     </div>
     <hr/>
-    <div class="field-row-stacked">
-        <label for="desc">Description</label>
-        <p v-if="!isEditing">{{ task.description }}</p>
-        <input type="textarea" v-else v-model="editDesc" id="desc"/>
+    <p v-if="!isEditing">{{ task.description }}</p>
+    <div v-else>
+        <div class="field-row-stacked">
+            <label for="desc">Description</label>
+            <textarea rows="3" v-model="editDesc" id="desc"/>
+        </div>
     </div>
-    <input type="checkbox" id="completed" v-model="task.completed"/>
-    <label for="completed">Completed?</label>
+    <p>
+        <input type="checkbox" id="completed" v-model="task.completed"/>
+        <label for="completed">Completed?</label>
+    </p>
     <div v-if="!isEditing">
         <button @click="toggleEditing">Edit</button>
     </div>
     <div v-else>
-        <button @click="save">Save</button>
-        <button @click="toggleEditing">Cancel</button>
+        <button @click="save">Save</button> <button @click="toggleEditing">Cancel</button>
     </div>
 </template>

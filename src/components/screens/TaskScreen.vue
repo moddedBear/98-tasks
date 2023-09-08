@@ -20,7 +20,7 @@
 
 <template>
     <menu role="tablist">
-        <li v-for="(tab, index) in tabs" :key="tab.name" @click="activeTab = index" role="tab" :aria-selected="index == activeTab">{{ tab.name }}</li>
+        <li v-for="(tab, index) in tabs" :key="tab.name" @click="activeTab = index" role="tab" :aria-selected="index == activeTab"><a>{{ tab.name }}</a></li>
     </menu>
     <div class="window" role="tabpanel">
         <div class="window-body">
