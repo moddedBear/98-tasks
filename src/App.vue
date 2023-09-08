@@ -7,7 +7,7 @@ import { Task, Log } from './classes/task';
 const windows = ref([])
 
 onMounted(() => {
-  store.spawnWindow()
+  store.spawnMainWindow()
   const task1 = new Task()
   task1.title = 'Task 1'
   task1.hours = 2
@@ -46,7 +46,7 @@ function raise(id) {
 
 <template>
   <template v-for="window in store.windows" :key="window.id">
-    <component :is="TheWindow" ref="windows" :title="window.title" :id="window.id" :width="window.width" :initial-x="window.initialX" :initial-y="window.initialY" @raise="raise"></component>
+    <component :is="TheWindow" ref="windows" :title="window.title" :screen="window.screen" :screenProps="window.screenProps" :id="window.id" :width="window.width" :initial-x="window.initialX" :initial-y="window.initialY" @raise="raise"></component>
   </template>
 </template>
 

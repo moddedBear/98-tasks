@@ -1,15 +1,24 @@
 <script setup>
     import { onMounted, ref, toRaw } from 'vue'
     import WelcomeScreen from './screens/WelcomeScreen.vue'
-    import { store } from '../store';
+    import { store } from '../store'
+    import TaskScreen from './screens/TaskScreen.vue'
 
     const props = defineProps({
+        screen: {
+            type: String,
+            required: true,
+        },
+        screenProps: {
+            type: Object,
+            required: false,
+        },
         title: {
             type: String,
-            required: true
+            required: true,
         },
         id: {
-            type: Number,
+            type: String,
             required: true
         },
         width: {
@@ -28,7 +37,6 @@
 
     const emit = defineEmits(['raise'])
 
-    const currentScreen = ref('welcome')
     const cursorX = ref(-1)
     const cursorY = ref(-1)
     const posX = ref(props.initialX)
@@ -85,7 +93,8 @@
             </div>
         </div>
         <div class="window-body" v-show="!minimized">
-            <WelcomeScreen v-if="currentScreen == 'welcome'" />
+            <WelcomeScreen v-if="screen == 'welcome'" />
+            <TaskScreen v-else-if="screen == 'task'" :task-id="screenProps.taskId" />
         </div>
     </div>
 </template>

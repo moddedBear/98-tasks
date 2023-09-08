@@ -1,26 +1,31 @@
 <script setup>
-import { computed } from 'vue';
-import { Task } from '../classes/task'
+    import { computed } from 'vue';
+    import { Task } from '../classes/task'
+    import { store } from '../store'
 
-const props = defineProps({
-    task: {
-        type: Task,
-        required: true,
-    }
-})
-
-const status = computed(() => {
-    if (props.task.completed) return '✔️'
-    const logInProgress = props.task.logs.some((log) => {
-        return log.end === undefined
+    const props = defineProps({
+        task: {
+            type: Task,
+            required: true,
+        }
     })
-    if (logInProgress) return '🟢'
-    return '🔴'
-})
+
+    const status = computed(() => {
+        if (props.task.completed) return '✔️'
+        const logInProgress = props.task.logs.some((log) => {
+            return log.end === undefined
+        })
+        if (logInProgress) return '🟢'
+        return '🔴'
+    })
+
+    function openTask() {
+        store.spawnTaskWindow(props.task.id)
+    }
 </script>
 
 <template>
-    <tr>
+    <tr @click="openTask">
         <td style="text-align: center">{{ status }}</td>
         <td>{{ task.title }}</td>
         <td>{{ task.hours }}</td>

@@ -26,7 +26,7 @@
     <div @click.self="highlightedTask = undefined">
         <p>Current tasks will go here!</p>
     
-        <div class="sunken-panel">
+        <div class="sunken-panel" style="height: 150px">
             <table class="interactive">
                 <thead>
                     <tr>
