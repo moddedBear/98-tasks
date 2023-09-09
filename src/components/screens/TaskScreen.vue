@@ -4,6 +4,7 @@
     import TaskTimeLogTab from '../tabs/TaskTimeLogTab.vue'
     import TaskNotesTab from '../tabs/TaskNotesTab.vue'
     import TaskTodoTab from '../tabs/TaskTodoTab.vue'
+    import TaskBlockersTab from '../tabs/TaskBlockersTab.vue'
     import { store } from '../../store'
 
     const props = defineProps({
@@ -34,14 +35,18 @@
             {
                 name: `Todo (${task.value.uncompletedTodos.length}/${task.value.todos.length})`,
                 content: TaskTodoTab
-            }
+            },
+            {
+                name: `Blockers (${task.value.uncompletedBlockers.length}/${task.value.blockers.length})`,
+                content: TaskBlockersTab
+            },
         ]
     })
 </script>
 
 <template>
     <menu role="tablist">
-        <li v-for="(tab, index) in tabs" :key="tab.name" @click="activeTab = index" role="tab" :aria-selected="index == activeTab"><a>{{ tab.name }}</a></li>
+        <li v-for="(tab, index) in tabs" :key="index" @click="activeTab = index" role="tab" :aria-selected="index == activeTab"><a>{{ tab.name }}</a></li>
     </menu>
     <div class="window" role="tabpanel">
         <div class="window-body">

@@ -18,7 +18,17 @@ const Task = class {
             return todo.completed
         })
     })
-    blockers = []
+    blockers = ref([])
+    uncompletedBlockers = computed(() => {
+        return this.blockers.value.filter((blocker) => {
+            return !blocker.completed
+        })
+    })
+    completedBlockers = computed(() => {
+        return this.blockers.value.filter((blocker) => {
+            return blocker.completed
+        })
+    })
     hours = computed(() => {
         let total = 0
         for (const log of this.logs.value) {
