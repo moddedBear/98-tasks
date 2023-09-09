@@ -2,6 +2,7 @@
     import { computed } from 'vue'
     import { store } from '../../store'
     import { Log } from '../../classes/task'
+    import { timeDateString } from '../../util'
 
     const props = defineProps({
         taskId: {
@@ -40,32 +41,12 @@
         }
         task.value.hours = hours.toFixed(1)
     }
-
-    function timeString(date) {
-        let ampm = 'AM'
-        let hour = date.getHours()
-        if (hour > 12) {
-            hour -= 12
-            ampm = 'PM'
-        }
-        let minutes = date.getMinutes()
-        if (minutes < 10) {
-            minutes = '0' + minutes
-        }
-        return `${hour}:${minutes} ${ampm}`
-    }
-    function dateString(date) {
-        return date.toDateString()
-    }
-    function timeDateString(date) {
-        return `${timeString(date)} — ${dateString(date)}`
-    }
 </script>
 
 <template>
     <p>You are {{ isWorking ? '' : 'NOT' }} currently working on this task.</p>
     <p><button :disabled="isWorking" @click="timeIn">Time In</button> <button :disabled="!isWorking" @click="timeOut">Time Out</button></p>
-    <div class="log-container" v-for="log in task.logs" :key="log.start">
+    <div class="log-container" v-for="log in task.logs" :key="log.id">
         <hr/>
         <div class="time-container">
             <div>

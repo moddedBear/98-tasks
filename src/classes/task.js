@@ -13,17 +13,23 @@ const Task = class {
 }
 
 const Log = class {
+    id = uuidv4()
     text = ''
     start = new Date()
     end
 }
 
 const Note = class {
+    id = uuidv4()
     date = new Date()
     text = ''
+    constructor(text) {
+        this.text = text
+    }
 }
 
 const Todo = class {
+    id = uuidv4()
     completed = false
     text = ''
 }

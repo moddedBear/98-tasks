@@ -54,5 +54,10 @@ function raise(id) {
   body {
     background-color: #008080;
   }
-
+  a {
+    cursor: pointer;
+  }
+  p {
+    white-space: pre;
+  }
 </style>

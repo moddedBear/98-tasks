@@ -2,6 +2,7 @@
     import { computed, ref } from 'vue'
     import TaskGeneral from '../tabs/TaskGeneral.vue'
     import TaskTimeLog from '../tabs/TaskTimeLog.vue'
+    import TaskNotes from '../tabs/TaskNotes.vue'
     import { store } from '../../store'
 
     const props = defineProps({
@@ -24,6 +25,10 @@
             {
                 name: `Time Log (${task.value.hours} hrs)`,
                 content: TaskTimeLog
+            },
+            {
+                name: `Notes (${task.value.notes.length})`,
+                content: TaskNotes
             },
         ]
     })
