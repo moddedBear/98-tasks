@@ -1,8 +1,8 @@
 <script setup>
     import { computed, ref } from 'vue'
-    import TaskGeneral from '../tabs/TaskGeneral.vue'
-    import TaskTimeLog from '../tabs/TaskTimeLog.vue'
-    import TaskNotes from '../tabs/TaskNotes.vue'
+    import TaskGeneralTab from '../tabs/TaskGeneralTab.vue'
+    import TaskTimeLogTab from '../tabs/TaskTimeLogTab.vue'
+    import TaskNotesTab from '../tabs/TaskNotesTab.vue'
     import { store } from '../../store'
 
     const props = defineProps({
@@ -20,15 +20,15 @@
         return [
             {
                 name: 'General',
-                content: TaskGeneral
+                content: TaskGeneralTab
             },
             {
                 name: `Time Log (${task.value.hours} hrs)`,
-                content: TaskTimeLog
+                content: TaskTimeLogTab
             },
             {
                 name: `Notes (${task.value.notes.length})`,
-                content: TaskNotes
+                content: TaskNotesTab
             },
         ]
     })
