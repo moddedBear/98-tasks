@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue';
 import TheWindow from './components/TheWindow.vue'
 import { store } from './store.js'
-import { Task, Log } from './classes/task';
+import { Task, Log } from './classes';
 
 const windows = ref([])
 

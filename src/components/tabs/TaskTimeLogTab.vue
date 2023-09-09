@@ -1,7 +1,7 @@
 <script setup>
     import { computed } from 'vue'
     import { store } from '../../store'
-    import { Log } from '../../classes/task'
+    import { Log } from '../../classes'
     import { timeDateString } from '../../util'
 
     const props = defineProps({

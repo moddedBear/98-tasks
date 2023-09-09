@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
+import { ref, computed } from 'vue'
 
 const Task = class {
     id = uuidv4()
@@ -6,7 +7,17 @@ const Task = class {
     description = ''
     logs = []
     notes = []
-    todo = []
+    todos = ref([])
+    uncompletedTodos = computed(() => {
+        return this.todos.value.filter((todo) => {
+            return !todo.completed
+        })
+    })
+    completedTodos = computed(() => {
+        return this.todos.value.filter((todo) => {
+            return todo.completed
+        })
+    })
     blockers = []
     hours = 0
     completed = false
@@ -32,6 +43,9 @@ const Todo = class {
     id = uuidv4()
     completed = false
     text = ''
+    constructor(text) {
+        this.text = text
+    }
 }
 
 export {Task, Log, Note, Todo}

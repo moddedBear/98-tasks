@@ -1,6 +1,6 @@
 <script setup>
     import { computed } from 'vue';
-    import { Task } from '../classes/task'
+    import { Task } from '../classes'
     import { store } from '../store'
 
     const props = defineProps({

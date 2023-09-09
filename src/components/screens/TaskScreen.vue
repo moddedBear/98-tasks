@@ -3,6 +3,7 @@
     import TaskGeneralTab from '../tabs/TaskGeneralTab.vue'
     import TaskTimeLogTab from '../tabs/TaskTimeLogTab.vue'
     import TaskNotesTab from '../tabs/TaskNotesTab.vue'
+    import TaskTodoTab from '../tabs/TaskTodoTab.vue'
     import { store } from '../../store'
 
     const props = defineProps({
@@ -30,6 +31,10 @@
                 name: `Notes (${task.value.notes.length})`,
                 content: TaskNotesTab
             },
+            {
+                name: `Todo (${task.value.uncompletedTodos.length}/${task.value.todos.length})`,
+                content: TaskTodoTab
+            }
         ]
     })
 </script>
