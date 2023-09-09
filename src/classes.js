@@ -5,7 +5,7 @@ const Task = class {
     id = uuidv4()
     title = 'New Task'
     description = ''
-    logs = []
+    logs = ref([])
     notes = []
     todos = ref([])
     uncompletedTodos = computed(() => {
@@ -19,7 +19,16 @@ const Task = class {
         })
     })
     blockers = []
-    hours = 0
+    hours = computed(() => {
+        let total = 0
+        for (const log of this.logs.value) {
+            if (!log.end) {
+                continue
+            }
+            total += (log.end.getTime() - log.start.getTime()) / 1000 / 60 / 60
+        }
+        return total.toFixed(1)
+    })
     completed = false
 }
 

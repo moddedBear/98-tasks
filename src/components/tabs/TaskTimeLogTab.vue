@@ -29,17 +29,6 @@
             return log.end === undefined
         })
         log.end = new Date()
-
-        // update task hours
-        let hours = 0
-        for (const log of task.value.logs) {
-            if (!log.end) {
-                console.error('Looks like a time log is missing an end time')
-                continue
-            }
-            hours += (log.end.getTime() - log.start.getTime()) / 1000 / 60 / 60
-        }
-        task.value.hours = hours.toFixed(1)
     }
 </script>
 
