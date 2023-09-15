@@ -5,6 +5,7 @@ const Task = class {
     id = uuidv4()
     title = 'New Task'
     description = ''
+    links = []
     logs = ref([])
     notes = []
     todos = ref([])

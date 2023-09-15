@@ -64,6 +64,6 @@
     cursor: pointer;
   }
   p {
-    white-space: pre;
+    white-space: pre-wrap;
   }
 </style>
