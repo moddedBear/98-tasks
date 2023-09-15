@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from 'uuid'
 
 export const store = reactive({
     windows: [],
-    nextWindowId: 0,
     tasks: [],
     spawnMainWindow() {
         const window = {
