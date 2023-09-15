@@ -51,14 +51,25 @@
 </script>
 
 <template>
-  <template v-for="window in store.windows" :key="window.id">
-    <component :is="TheWindow" ref="windows" :title="window.title" :screen="window.screen" :screenProps="window.screenProps" :id="window.id" :width="window.width" :initial-x="window.initialX" :initial-y="window.initialY" @raise="raise"></component>
-  </template>
+  <div id="desktop">
+    <template v-for="window in store.windows" :key="window.id">
+      <component :is="TheWindow" ref="windows" :title="window.title" :screen="window.screen" :screenProps="window.screenProps" :id="window.id" :width="window.width" :initial-x="window.initialX" :initial-y="window.initialY" @raise="raise"></component>
+    </template>
+  </div>
 </template>
 
 <style>
   body {
     background-color: #008080;
+  }
+  #desktop {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    overflow: hidden;
   }
   a {
     cursor: pointer;
