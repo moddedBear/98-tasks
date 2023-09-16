@@ -1,6 +1,7 @@
 <script setup>
     import { computed, ref } from 'vue'
     import { store } from '../../store'
+    import TaskGeneralEdit from '../TaskGeneralEdit.vue';
 
     const props = defineProps({
         taskId: {
@@ -72,30 +73,14 @@
                 </ul>
             </fieldset>
         </p>
+        <p>
+            <input type="checkbox" id="completed" v-model="task.completed"/>
+            <label for="completed">Completed?</label>
+        </p>
     </div>
-    <p v-else>
-        <div class="field-row-stacked">
-            <label for="title">Title</label>
-            <input type="text" v-model="editTitle" id="title"/>
-        </div>
-        <div class="field-row-stacked">
-            <label for="desc">Description</label>
-            <textarea rows="5" v-model="editDesc" id="desc"/>
-        </div>
-        <div class="field-row-stacked">
-            <label for="link">Links</label>
-            <input type="text" v-for="(link, index) in editLinks" v-model="editLinks[index]" @input="adjustLinks(index)" id="link"/>
-        </div>
-    </p>
-    <p>
-        <input type="checkbox" id="completed" v-model="task.completed"/>
-        <label for="completed">Completed?</label>
-    </p>
+    <TaskGeneralEdit v-else :task-id="taskId" @dismiss="isEditing = false"/>
     <div v-if="!isEditing">
         <button @click="toggleEditing">Edit</button>
-    </div>
-    <div v-else>
-        <button @click="save">Save</button> <button @click="toggleEditing">Cancel</button>
     </div>
 </template>
 

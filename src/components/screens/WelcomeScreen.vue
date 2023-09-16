@@ -24,7 +24,7 @@
 
 <template>
     <div @click.self="highlightedTask = undefined">
-        <p>Current tasks will go here!</p>
+        <p><button @click="store.spawnNewTaskWindow">New task</button></p>
     
         <div class="sunken-panel" style="height: 150px">
             <table class="interactive">
@@ -41,8 +41,6 @@
                 </tbody>
             </table>
         </div>
-    
-        <button>New task</button> <button @click="store.spawnWindow">New window</button>
     
         <div class="status-bar">
             <p class="status-bar-field">{{ now.time }}</p>

@@ -1,8 +1,9 @@
 <script setup>
     import { onMounted, ref, toRaw } from 'vue'
-    import WelcomeScreen from './screens/WelcomeScreen.vue'
     import { store } from '../store'
+    import WelcomeScreen from './screens/WelcomeScreen.vue'
     import TaskScreen from './screens/TaskScreen.vue'
+    import NewTaskScreen from './screens/NewTaskScreen.vue'
 
     const props = defineProps({
         screen: {
@@ -93,6 +94,7 @@
         <div class="window-body" v-show="!minimized">
             <WelcomeScreen v-if="screen == 'welcome'" />
             <TaskScreen v-else-if="screen == 'task'" :task-id="screenProps.taskId" />
+            <NewTaskScreen v-else-if="screen == 'newTask'" @close="close" />
         </div>
     </div>
 </template>

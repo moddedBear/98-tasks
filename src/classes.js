@@ -41,6 +41,11 @@ const Task = class {
         return total.toFixed(1)
     })
     completed = false
+    constructor(title = '', description = '', links = []) {
+        this.title = title
+        this.description = description
+        this.links = links
+    }
 }
 
 const Log = class {

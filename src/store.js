@@ -15,6 +15,17 @@ export const store = reactive({
         }
         this.windows.push(window)
     },
+    spawnNewTaskWindow() {
+        const window = {
+            id: uuidv4(),
+            screen: 'newTask',
+            title: 'New Task',
+            width: '500px',
+            initialX: 50,
+            initialY: 50,
+        }
+        this.windows.push(window)
+    },
     spawnTaskWindow(taskID) {
         const task = this.tasks.find((task) => task.id == taskID)
         const title = task.title
