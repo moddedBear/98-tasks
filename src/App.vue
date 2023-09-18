@@ -7,7 +7,6 @@
   const windows = ref([])
 
   onMounted(() => {
-    store.spawnMainWindow()
     // const task1 = new Task()
     // task1.title = 'Task 1'
     // task1.completed = true
@@ -25,9 +24,13 @@
       }
       return value
     })
+    if (!store.tasks) {
+      store.tasks = []
+    }
     watchEffect(() => {
       window.localStorage.setItem("tasks", JSON.stringify(store.tasks))
     })
+    store.spawnMainWindow()
   })
 
   function raise(id) {
