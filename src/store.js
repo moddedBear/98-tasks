@@ -1,4 +1,4 @@
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
 
 export const store = reactive({
