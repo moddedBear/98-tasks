@@ -43,4 +43,25 @@ export const store = reactive({
         }
         this.windows.push(window)
     },
+    spawnYesNoDialogWindow(title, text, yesCallback = undefined, noCallback = undefined) {
+        let screenProps = {
+            text: text,
+        }
+        if (yesCallback) {
+            screenProps.yesCallback = yesCallback
+        }
+        if (noCallback) {
+            screenProps.noCallback = noCallback
+        }
+        const window = {
+            id: uuidv4(),
+            screen: 'yesNoDialog',
+            screenProps: screenProps,
+            title: title,
+            width: '250px',
+            initialX: 50,
+            initialY: 50,
+        }
+        this.windows.push(window)
+    },
 })

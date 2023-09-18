@@ -1,5 +1,5 @@
 <script setup>
-    import { computed, ref } from 'vue'
+    import { computed, ref, watchEffect } from 'vue'
     import TaskGeneralTab from '../tabs/TaskGeneralTab.vue'
     import TaskTimeLogTab from '../tabs/TaskTimeLogTab.vue'
     import TaskNotesTab from '../tabs/TaskNotesTab.vue'
@@ -14,9 +14,12 @@
         }
     })
 
+    const emit = defineEmits(['close'])
+
     const task = computed(() => {
         return store.tasks.find((i) => i.id === props.taskId)
     })
+
     const activeTab = ref(0)
     const tabs = computed(() => {
         return [
@@ -41,6 +44,12 @@
                 content: TaskBlockersTab
             },
         ]
+    })
+
+    watchEffect(() => {
+        if (task.value === undefined) {
+            emit('close')
+        }
     })
 </script>
 

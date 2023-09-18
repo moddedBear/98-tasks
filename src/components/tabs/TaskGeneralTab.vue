@@ -32,22 +32,16 @@
         isEditing.value = !isEditing.value
     }
 
-    function save() {
-        task.value.title = editTitle.value
-        task.value.description = editDesc.value
-        task.value.links = editLinks.value.filter((value) => {
-            return value != ''
+    function removeTask() {
+        store.tasks = store.tasks.filter((task) => {
+            return task.id != props.taskId
         })
-        isEditing.value = false
     }
 
-    function adjustLinks(index) {
-        if (editLinks.value[index] == '' && index < editLinks.value.length - 1) {
-            editLinks.value.splice(index, 1)
-        }
-        if (index == editLinks.value.length - 1 && editLinks.value[index] != '') {
-            editLinks.value.push('')
-        }
+    function remove() {
+        const title = 'Remove task?'
+        const text = `Are you sure you want to remove the task "${task.value.title}"?`
+        store.spawnYesNoDialogWindow(title, text, removeTask)
     }
 </script>
 
@@ -80,7 +74,7 @@
     </div>
     <TaskGeneralEdit v-else :task-id="taskId" @dismiss="isEditing = false"/>
     <div v-if="!isEditing">
-        <button @click="toggleEditing">Edit</button>
+        <p><button @click="toggleEditing">Edit</button> <button @click="remove">Remove</button></p>
     </div>
 </template>
 

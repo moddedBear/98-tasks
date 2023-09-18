@@ -4,6 +4,7 @@
     import WelcomeScreen from './screens/WelcomeScreen.vue'
     import TaskScreen from './screens/TaskScreen.vue'
     import NewTaskScreen from './screens/NewTaskScreen.vue'
+    import DialogYesNoScreen from './screens/DialogYesNoScreen.vue'
 
     const props = defineProps({
         screen: {
@@ -87,14 +88,14 @@
             <div class="title-bar-text" @mousedown.self="startDrag">{{ title }}</div>
             <div class="title-bar-controls">
                 <button aria-label="Minimize" @click="minimize"></button>
-                <button aria-label="Maximize"></button>
-                <button aria-label="Close" @click="close"></button>
+                <button aria-label="Close" @click="close" v-if="screen != 'welcome'"></button>
             </div>
         </div>
         <div class="window-body" v-show="!minimized">
             <WelcomeScreen v-if="screen == 'welcome'" />
-            <TaskScreen v-else-if="screen == 'task'" :task-id="screenProps.taskId" />
+            <TaskScreen v-else-if="screen == 'task'" :task-id="screenProps.taskId" @close="close" />
             <NewTaskScreen v-else-if="screen == 'newTask'" @close="close" />
+            <DialogYesNoScreen v-else-if="screen== 'yesNoDialog'" :text="screenProps.text" :yes-callback="screenProps.yesCallback" :no-callback="screenProps.noCallback" @close="close" />
         </div>
     </div>
 </template>
