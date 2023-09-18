@@ -1,7 +1,8 @@
 <script setup>
     import { onMounted, reactive, ref, computed } from 'vue'
     import TaskRow from '../TaskRow.vue';
-    import { store } from '../../store.js'
+    import { store } from '../../store'
+    import { timeDateString } from '../../util'
 
     const completedTasks = computed(() => {
         return store.tasks.filter((task) => {
@@ -16,15 +17,11 @@
         })
     })
 
-    const now = reactive({
-        time: '',
-        date: '',
-    })
+    const now = ref('')
 
     function updateNow() {
-        let n = new Date()
-        now.time = `${n.getHours()}:${n.getMinutes()}`
-        now.date = `${n.toDateString()}`
+        const n = new Date()
+        now.value = timeDateString(n)
     }
 
     function confirmClearCompleted() {
@@ -65,8 +62,8 @@
     </div>
 
     <div class="status-bar">
-        <p class="status-bar-field">{{ now.time }}</p>
-        <p class="status-bar-field">{{ store.tasks.length }} tasks</p>
-        <p class="status-bar-field">{{ now.date }}</p>
+        <p class="status-bar-field">{{ completedTasks.length }}/{{ store.tasks.length }} completed</p>
+        <p class="status-bar-field">{{ activeTasks.length }}/{{ store.tasks.length }} active</p>
+        <p class="status-bar-field">{{ now }}</p>
     </div>
 </template>
