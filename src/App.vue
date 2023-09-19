@@ -84,10 +84,15 @@
       window.height = maxHeight + 1
     }
   }
+
+  function logCursorCoords(e) {
+    store.cursorX = e.clientX
+    store.cursorY = e.clientY
+  }
 </script>
 
 <template>
-  <div id="desktop">
+  <div id="desktop" @mousemove="logCursorCoords">
     <template v-for="window in store.windows" :key="window.id">
       <component :is="TheWindow" ref="windows" :title="window.title" :screen="window.screen" :screenProps="window.screenProps" :id="window.id" :width="window.width" :initial-x="window.initialX" :initial-y="window.initialY" @raise="raise"></component>
     </template>
