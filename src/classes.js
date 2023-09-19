@@ -30,13 +30,16 @@ const Task = class {
             return blocker.completed
         })
     })
+    hoursUpdateTime = ref(new Date())
     hours = computed(() => {
         let total = 0
         for (const log of this.logs.value) {
             if (!log.end) {
-                continue
+                total += (this.hoursUpdateTime.value.getTime() - log.start.getTime()) / 1000 / 60 / 60
             }
-            total += (log.end.getTime() - log.start.getTime()) / 1000 / 60 / 60
+            else {
+                total += (log.end.getTime() - log.start.getTime()) / 1000 / 60 / 60
+            }
         }
         return total.toFixed(1)
     })

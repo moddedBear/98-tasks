@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, onMounted, watchEffect } from 'vue';
+  import { ref, onMounted, watchEffect, isRef, isReadonly } from 'vue';
   import TheWindow from './components/TheWindow.vue'
   import { store } from './store.js'
   import { Task, Log } from './classes';
@@ -18,20 +18,53 @@
     // store.tasks.push(task1)
     // store.tasks.push(task2)
     // store.tasks.push(task3)
-    store.tasks = JSON.parse(window.localStorage.getItem("tasks"), (key, value) => {
-      if (key === 'start' || key === 'end') {
+    loadTasks()
+    watchEffect(() => {
+      window.localStorage.setItem("tasks", JSON.stringify(store.tasks))
+    })
+    refreshHours()
+    setInterval(refreshHours, 1000 * 60)
+    store.spawnMainWindow()
+  })
+
+  function loadTasks() {
+    let tasks = JSON.parse(window.localStorage.getItem("tasks"), (key, value) => {
+      if (['start', 'end', 'hoursUpdateTime', 'date'].includes(key)) {
         return new Date(value)
       }
       return value
     })
+    if (!tasks) {
+      tasks = []
+    }
     if (!store.tasks) {
       store.tasks = []
     }
-    watchEffect(() => {
-      window.localStorage.setItem("tasks", JSON.stringify(store.tasks))
-    })
-    store.spawnMainWindow()
-  })
+    const newTasks = []
+    for (const task of tasks) {
+      let newTask = new Task()
+      for (const property in newTask) {
+        if (isReadonly(newTask[property])) {
+          continue
+        }
+        if (isRef(newTask[property])) {
+          newTask[property].value = task[property]
+        }
+        else {
+          newTask[property] = task[property]
+        }
+      }
+      newTasks.push(newTask)
+    }
+    store.tasks = newTasks
+  }
+
+  function refreshHours() {
+    const now = new Date()
+    for (const task of store.tasks) {
+      task.hoursUpdateTime = now
+    }
+  }
 
   function raise(id) {
     let maxHeight = 0
