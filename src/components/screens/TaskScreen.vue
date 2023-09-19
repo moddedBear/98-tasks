@@ -36,11 +36,11 @@
                 content: TaskNotesTab
             },
             {
-                name: `Todo (${task.value.uncompletedTodos.length}/${task.value.todos.length})`,
+                name: `Todo (${task.value.uncompletedTodos.length})`,
                 content: TaskTodoTab
             },
             {
-                name: `Blockers (${task.value.uncompletedBlockers.length}/${task.value.blockers.length})`,
+                name: `Blockers (${task.value.uncompletedBlockers.length})`,
                 content: TaskBlockersTab
             },
         ]

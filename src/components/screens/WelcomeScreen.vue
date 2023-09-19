@@ -52,6 +52,7 @@
                     <th>Status</th>
                     <th style="width: 100%">Title</th>
                     <th>Hours</th>
+                    <th>Todo</th>
                     <th>Blockers</th>
                 </tr>
             </thead>

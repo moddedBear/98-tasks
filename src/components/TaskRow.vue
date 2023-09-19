@@ -29,6 +29,7 @@
         <td style="text-align: center">{{ status }}</td>
         <td>{{ task.title }}</td>
         <td>{{ task.hours }}</td>
-        <td>{{ task.blockers.length }}</td>
+        <td>{{ task.uncompletedTodos.length }}</td>
+        <td>{{ task.uncompletedBlockers.length }}</td>
     </tr>
 </template>
