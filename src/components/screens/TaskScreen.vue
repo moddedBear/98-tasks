@@ -68,4 +68,8 @@
     li {
         cursor: pointer;
     }
+    .window-body {
+        height: 300px;
+        overflow: scroll;
+    }
 </style>

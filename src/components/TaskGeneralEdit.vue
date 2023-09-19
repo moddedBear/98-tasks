@@ -72,7 +72,7 @@
             <input type="text" v-for="(link, index) in editLinks" v-model="editLinks[index]" @input="adjustLinks(index)" id="link"/>
         </div>
     </p>
-    <div>
-        <button @click="save">Save</button> <button @click="$emit('dismiss')">Cancel</button>
+    <div class="bottom-buttons">
+        <p><button @click="save">Save</button> <button @click="$emit('dismiss')">Cancel</button></p>
     </div>
 </template>
