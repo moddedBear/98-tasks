@@ -36,6 +36,72 @@
         })
     }
 
+    const headers = ['Status', 'Title', 'Hours', 'Todo', 'Blockers']
+    const sortingMethods = [sortByStatus, sortByTitle, sortByHours, sortByTodos, sortByBlockers]
+    const activeSort = ref(0)
+    const sortOrder = ref(1)
+    const sortedTasks = computed(() => {
+        return store.tasks.toSorted(sortingMethods[activeSort.value])
+    })
+
+    function setSortingMethod(index) {
+        console.log(index)
+        if (activeSort.value == index) {
+            sortOrder.value = sortOrder.value * -1
+        }
+        else {
+            activeSort.value = index
+            sortOrder.value = 1
+        }
+    }
+    
+    function sortByStatus(a, b) {
+        let score = 0
+        if (a.completed) {
+            score -= 2
+        }
+        if (b.completed) {
+            score += 2
+        }
+        if (a.logs.some((log) => {return log.end === undefined})) {
+            score -= 1
+        }
+        if (b.logs.some((log) => {return log.end === undefined})) {
+            score += 1
+        }
+        if (score == 0) {
+            return sortByTitle(a, b) * sortOrder.value
+        }
+        return score * sortOrder.value
+    }
+
+    function sortByTitle(a, b) {
+        return a.title.localeCompare(b.title) * sortOrder.value
+    }
+
+    function sortByHours(a, b) {
+        const result = (a.hours - b.hours) * sortOrder.value
+        if (result == 0) return sortByTitle(a, b) * sortOrder.value
+        return result
+    }
+
+    function sortByTodos(a, b) {
+        const result = (a.uncompletedTodos.length - b.uncompletedTodos.length) * sortOrder.value
+        if (result == 0) return sortByTitle(a, b) * sortOrder.value
+        return result
+    }
+
+    function sortByBlockers(a, b) {
+        const result = (a.uncompletedBlockers.length - b.uncompletedBlockers.length) * sortOrder.value
+        if (result == 0) return sortByTitle(a, b) * sortOrder.value
+        return result
+    }
+
+    function sortIndicator(index) {
+        if (sortOrder.value == -1) return '⏷'
+        return '⏶' 
+    }
+
     onMounted(() => {
         updateNow()
         setInterval(updateNow, 1000)
@@ -49,15 +115,11 @@
         <table class="interactive">
             <thead>
                 <tr>
-                    <th>Status</th>
-                    <th style="width: 100%">Title</th>
-                    <th>Hours</th>
-                    <th>Todo</th>
-                    <th>Blockers</th>
+                    <th v-for="(header, index) in headers" @click="setSortingMethod(index)" :class="{ 'full-width': header == 'Title' }"><span v-if="index == activeSort">{{ sortIndicator(index) }}</span>{{ header }}</th>
                 </tr>
             </thead>
             <tbody>
-                <TaskRow v-for="task in store.tasks" :key="task.id" :task="task"></TaskRow>
+                <TaskRow v-for="task in sortedTasks" :key="task.id" :task="task"></TaskRow>
             </tbody>
         </table>
     </div>
@@ -68,3 +130,12 @@
         <p class="status-bar-field">{{ now }}</p>
     </div>
 </template>
+
+<style scoped>
+    th {
+        cursor: pointer;
+    }
+    th.full-width {
+        width: 100%;
+    }
+</style>

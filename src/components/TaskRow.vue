@@ -26,10 +26,16 @@
 
 <template>
     <tr @click="openTask">
-        <td style="text-align: center">{{ status }}</td>
+        <td class="center">{{ status }}</td>
         <td>{{ task.title }}</td>
-        <td>{{ task.hours }}</td>
-        <td>{{ task.uncompletedTodos.length }}</td>
-        <td>{{ task.uncompletedBlockers.length }}</td>
+        <td class="center">{{ task.hours }}</td>
+        <td class="center">{{ task.uncompletedTodos.length }}</td>
+        <td class="center">{{ task.uncompletedBlockers.length }}</td>
     </tr>
 </template>
+
+<style scoped>
+    .center {
+        text-align: center;
+    }
+</style>
