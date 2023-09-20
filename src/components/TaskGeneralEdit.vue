@@ -73,7 +73,7 @@
         </div>
     </p>
     <div>
-        <p><button @click="save">Save</button> <button @click="$emit('dismiss')">Cancel</button></p>
+        <p><button @click="save" :disabled="editTitle.trim() == ''">Save</button> <button @click="$emit('dismiss')">Cancel</button></p>
     </div>
 </template>
 
