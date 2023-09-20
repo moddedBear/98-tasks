@@ -96,6 +96,7 @@
     <template v-for="window in store.windows" :key="window.id">
       <component :is="TheWindow" ref="windows" :title="window.title" :screen="window.screen" :screenProps="window.screenProps" :id="window.id" :width="window.width" :initial-x="window.initialX" :initial-y="window.initialY" @raise="raise"></component>
     </template>
+    <p class="about"><a href="#" @click="store.spawnAboutWindow">About</a></p>
   </div>
 </template>
 
@@ -117,5 +118,14 @@
   }
   p {
     white-space: pre-wrap;
+  }
+  p.about {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin-right: 12px;
+  }
+  p.about a {
+    color: white;
   }
 </style>

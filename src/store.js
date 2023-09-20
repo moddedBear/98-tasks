@@ -74,4 +74,17 @@ export const store = reactive({
         }
         this.windows.push(window)
     },
+    spawnAboutWindow() {
+        const x = Math.floor(window.innerWidth / 2) - 150
+        const y = Math.floor(window.innerHeight / 2) - 100
+        const w = {
+            id: uuidv4(),
+            screen: 'about',
+            title: 'About 98 Tasks',
+            width: '300px',
+            initialX: x,
+            initialY: y,
+        }
+        this.windows.push(w)
+    }
 })

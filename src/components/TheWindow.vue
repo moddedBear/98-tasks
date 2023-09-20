@@ -5,6 +5,7 @@
     import TaskScreen from './screens/TaskScreen.vue'
     import NewTaskScreen from './screens/NewTaskScreen.vue'
     import DialogYesNoScreen from './screens/DialogYesNoScreen.vue'
+    import AboutScreen from './screens/AboutScreen.vue'
 
     const props = defineProps({
         screen: {
@@ -95,7 +96,8 @@
             <WelcomeScreen v-if="screen == 'welcome'" />
             <TaskScreen v-else-if="screen == 'task'" :task-id="screenProps.taskId" @close="close" />
             <NewTaskScreen v-else-if="screen == 'newTask'" @close="close" />
-            <DialogYesNoScreen v-else-if="screen== 'yesNoDialog'" :text="screenProps.text" :yes-callback="screenProps.yesCallback" :no-callback="screenProps.noCallback" @close="close" />
+            <DialogYesNoScreen v-else-if="screen == 'yesNoDialog'" :text="screenProps.text" :yes-callback="screenProps.yesCallback" :no-callback="screenProps.noCallback" @close="close" />
+            <AboutScreen v-else-if="screen == 'about'" />
         </div>
     </div>
 </template>
