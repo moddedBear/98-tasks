@@ -53,8 +53,14 @@
     <div class="notes-container" v-for="note in task.notes" :key="note.id">
         <hr/>
         <p>
-            {{ timeDateString(note.date) }} <span style="float: right;"><a @click="remove(note.id)">X</a></span>
+            {{ timeDateString(note.date) }} <span style="float: right;"><a @click="remove(note.id)" style="color: red">X</a></span>
         </p>
         <p>{{ note.text }}</p>
     </div>
 </template>
+
+<style>
+    textarea {
+        resize: none;
+    }
+</style>
