@@ -23,6 +23,7 @@
     function timeIn() {
         const log = new Log()
         task.value.logs.unshift(log)
+        task.value.hoursUpdateTime = new Date()
     }
     function timeOut() {
         const log = task.value.logs.find((log) => {
