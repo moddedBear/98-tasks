@@ -73,17 +73,10 @@
         </p>
     </div>
     <TaskGeneralEdit v-else :task-id="taskId" @dismiss="isEditing = false"/>
-    <div v-if="!isEditing" class="bottom-buttons">
+    <div v-if="!isEditing">
         <p><button @click="toggleEditing">Edit</button> <button @click="remove">Remove</button></p>
     </div>
 </template>
-
-<style>
-    .bottom-buttons {
-        position: absolute;
-        bottom: 0px;
-    }
-</style>
 
 <style scoped>
     fieldset p,ul {

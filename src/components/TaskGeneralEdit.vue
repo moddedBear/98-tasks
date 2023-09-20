@@ -72,7 +72,13 @@
             <input type="text" v-for="(link, index) in editLinks" v-model="editLinks[index]" @input="adjustLinks(index)" id="link"/>
         </div>
     </p>
-    <div class="bottom-buttons">
+    <div>
         <p><button @click="save">Save</button> <button @click="$emit('dismiss')">Cancel</button></p>
     </div>
 </template>
+
+<style scoped>
+    textarea {
+        resize: none;
+    }
+</style>
