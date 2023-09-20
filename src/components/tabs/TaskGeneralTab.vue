@@ -43,6 +43,26 @@
         const text = `Are you sure you want to remove the task "${task.value.title}"?`
         store.spawnYesNoDialogWindow(title, text, removeTask)
     }
+
+    function toggleCompleted() {
+        if (task.value.completed && task.value.isWorking) {
+            task.value.completed = false
+            const title = 'Stop working?'
+            const text = `You are still working on "${task.value.title}" according to your time log. Would you like to stop working and mark this task as completed?`
+            store.spawnYesNoDialogWindow(title, text, stopWorking)
+        }
+        else {
+            task.value.completed = !task.value.completed
+        }
+    }
+
+    function stopWorking() {
+        const log = task.value.logs.find((log) => {
+            return log.end === undefined
+        })
+        log.end = new Date()
+        task.value.completed = true
+    }
 </script>
 
 <template>
@@ -68,7 +88,7 @@
             </fieldset>
         </p>
         <p>
-            <input type="checkbox" id="completed" v-model="task.completed"/>
+            <input type="checkbox" id="completed" v-model="task.completed" @change="toggleCompleted"/>
             <label for="completed">Completed?</label>
         </p>
     </div>

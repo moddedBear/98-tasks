@@ -12,10 +12,7 @@
 
     const status = computed(() => {
         if (props.task.completed) return '✔️'
-        const logInProgress = props.task.logs.some((log) => {
-            return log.end === undefined
-        })
-        if (logInProgress) return '🟢'
+        if (props.task.isWorking) return '🟢'
         return '🔴'
     })
 

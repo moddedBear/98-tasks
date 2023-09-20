@@ -43,6 +43,11 @@ const Task = class {
         }
         return total.toFixed(1)
     })
+    isWorking = computed(() => {
+        return this.logs.value.some((log) => {
+            return log.end === undefined
+        })
+    })
     completed = false
     constructor(title = '', description = '', links = []) {
         this.title = title

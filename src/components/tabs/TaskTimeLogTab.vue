@@ -14,11 +14,6 @@
     const task = computed(() => {
         return store.tasks.find((i) => i.id === props.taskId)
     })
-    const isWorking = computed(() => {
-        return task.value.logs.some((log) => {
-            return log.end === undefined
-        })
-    })
 
     function timeIn() {
         const log = new Log()
@@ -34,8 +29,9 @@
 </script>
 
 <template>
-    <p>You are {{ isWorking ? '' : 'NOT' }} currently working on this task.</p>
-    <p><button :disabled="isWorking" @click="timeIn">Time In</button> <button :disabled="!isWorking" @click="timeOut">Time Out</button></p>
+    <p>You are {{ task.isWorking ? '' : 'NOT' }} currently working on this task.</p>
+    <p v-if="task.completed">This task is already completed!</p>
+    <p><button :disabled="task.isWorking || task.completed" @click="timeIn">Time In</button> <button :disabled="!task.isWorking" @click="timeOut">Time Out</button></p>
     <div class="log-container" v-for="log in task.logs" :key="log.id">
         <hr/>
         <div class="time-container">

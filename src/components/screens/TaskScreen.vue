@@ -21,10 +21,7 @@
     })
 
     const status = computed(() => {
-        const logInProgress = task.value.logs.some((log) => {
-            return log.end === undefined
-        })
-        if (logInProgress) return '🟢'
+        if (task.value.isWorking) return '🟢'
         return '🔴'
     })
 
