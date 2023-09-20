@@ -51,9 +51,6 @@
             const text = `You are still working on "${task.value.title}" according to your time log. Would you like to stop working and mark this task as completed?`
             store.spawnYesNoDialogWindow(title, text, stopWorking)
         }
-        else {
-            task.value.completed = !task.value.completed
-        }
     }
 
     function stopWorking() {
