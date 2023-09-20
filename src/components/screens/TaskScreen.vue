@@ -20,6 +20,14 @@
         return store.tasks.find((i) => i.id === props.taskId)
     })
 
+    const status = computed(() => {
+        const logInProgress = task.value.logs.some((log) => {
+            return log.end === undefined
+        })
+        if (logInProgress) return '🟢'
+        return '🔴'
+    })
+
     const activeTab = ref(0)
     const tabs = computed(() => {
         return [
@@ -28,7 +36,7 @@
                 content: TaskGeneralTab
             },
             {
-                name: `Time Log (${task.value.hours} hrs)`,
+                name: `${status.value} Time Log (${task.value.hours} hrs)`,
                 content: TaskTimeLogTab
             },
             {
