@@ -39,7 +39,7 @@
     const headers = ['Status', 'Title', 'Hours', 'Todo', 'Blockers']
     const sortingMethods = [sortByStatus, sortByTitle, sortByHours, sortByTodos, sortByBlockers]
     const activeSort = ref(0)
-    const sortOrder = ref(1)
+    const sortOrder = ref(-1)
     const sortedTasks = computed(() => {
         return store.tasks.toSorted(sortingMethods[activeSort.value])
     })
@@ -51,7 +51,12 @@
         }
         else {
             activeSort.value = index
-            sortOrder.value = 1
+            if (index == 1) {
+                sortOrder.value = 1
+            }
+            else {
+                sortOrder.value = -1
+            }
         }
     }
     
@@ -64,10 +69,10 @@
             score += 2
         }
         if (a.logs.some((log) => {return log.end === undefined})) {
-            score -= 1
+            score += 1
         }
         if (b.logs.some((log) => {return log.end === undefined})) {
-            score += 1
+            score -= 1
         }
         if (score == 0) {
             return sortByTitle(a, b) * sortOrder.value
