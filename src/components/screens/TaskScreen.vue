@@ -21,6 +21,7 @@
     })
 
     const status = computed(() => {
+        if (task.value.completed) return '✔️'
         if (task.value.isWorking) return '🟢'
         return '🔴'
     })
