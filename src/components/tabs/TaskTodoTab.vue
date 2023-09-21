@@ -41,8 +41,8 @@ import { Todo } from '../../classes'
     </div>
     <div v-else>
         <div class="field-row-stacked">
-            <label for="todo-input">New todo</label>
-            <input type="text" v-model="newTodoText"/>
+            <label :for="`todo-input-${task.id}`">New todo</label>
+            <input type="text" v-model="newTodoText" :id="`todo-input-${task.id}`"/>
         </div>
         <p>
             <button @click="save">Save</button> <button @click="cancel">Cancel</button>

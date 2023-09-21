@@ -1,5 +1,5 @@
 <script setup>
-    import { computed, ref } from 'vue'
+    import { computed, ref, watchEffect } from 'vue'
     import { store } from '../../store'
     import TaskGeneralEdit from '../TaskGeneralEdit.vue';
 
@@ -15,9 +15,6 @@
     })
 
     const isEditing = ref(false)
-    const editTitle = ref('')
-    const editDesc = ref('')
-    const editLinks = ref([])
 
     function toggleEditing() {
         if (!isEditing.value) {
@@ -45,6 +42,7 @@
     }
 
     function toggleCompleted() {
+        console.log(task.value.title)
         if (task.value.completed && task.value.isWorking) {
             task.value.completed = false
             const title = 'Stop working?'
@@ -85,8 +83,8 @@
             </fieldset>
         </p>
         <p>
-            <input type="checkbox" id="completed" v-model="task.completed" @change="toggleCompleted"/>
-            <label for="completed">Completed?</label>
+            <input type="checkbox" :id="`completed-${task.id}`" v-model="task.completed" @change="toggleCompleted"/>
+            <label :for="`completed-${task.id}`">Completed?</label>
         </p>
     </div>
     <TaskGeneralEdit v-else :task-id="taskId" @dismiss="isEditing = false"/>

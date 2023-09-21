@@ -43,8 +43,8 @@
             </div>
         </div>
         <div class="field-row">
-            <label>Note</label>
-            <input type="text" v-model="log.text" style="width: 100%"/>
+            <label :for="`log-note-${log.id}`">Note</label>
+            <input type="text" v-model="log.text" :id="`log-note-${log.id}`" style="width: 100%"/>
         </div>
     </div>
 </template>

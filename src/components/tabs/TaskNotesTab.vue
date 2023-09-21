@@ -43,8 +43,8 @@
     </div>
     <div v-else>
         <div class="field-row-stacked">
-            <label for="note-textarea">New note</label>
-            <textarea id="note-textarea" rows="3" v-model="newNoteText"></textarea>
+            <label :for="`note-textarea-${task.id}`">New note</label>
+            <textarea :id="`note-textarea-${task.id}`" rows="3" v-model="newNoteText"></textarea>
         </div>
         <p>
             <button @click="save">Save</button> <button @click="cancel">Cancel</button>

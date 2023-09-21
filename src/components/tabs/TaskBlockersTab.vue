@@ -41,8 +41,8 @@ import { Todo } from '../../classes'
     </div>
     <div v-else>
         <div class="field-row-stacked">
-            <label for="blocker-input">New blocker</label>
-            <input type="text" v-model="newBlockerText"/>
+            <label :for="`blocker-input-${task.id}`">New blocker</label>
+            <input type="text" v-model="newBlockerText" :id="`blocker-input-${task.id}`"/>
         </div>
         <p>
             <button @click="save">Save</button> <button @click="cancel">Cancel</button>

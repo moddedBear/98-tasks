@@ -60,16 +60,16 @@
 <template>
     <p>
         <div class="field-row-stacked">
-            <label for="title">Title</label>
-            <input type="text" v-model="editTitle" id="title"/>
+            <label>Title</label>
+            <input type="text" v-model="editTitle"/>
         </div>
         <div class="field-row-stacked">
-            <label for="desc">Description</label>
-            <textarea rows="5" v-model="editDesc" id="desc"/>
+            <label>Description</label>
+            <textarea rows="5" v-model="editDesc"/>
         </div>
         <div class="field-row-stacked">
-            <label for="link">Links</label>
-            <input type="text" v-for="(link, index) in editLinks" v-model="editLinks[index]" @input="adjustLinks(index)" id="link"/>
+            <label>Links</label>
+            <input type="text" v-for="(link, index) in editLinks" v-model="editLinks[index]" @input="adjustLinks(index)"/>
         </div>
     </p>
     <div>
