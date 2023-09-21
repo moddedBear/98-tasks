@@ -28,7 +28,7 @@ export const store = reactive({
             id: uuidv4(),
             screen: 'newTask',
             title: 'New Task',
-            width: '500px',
+            width: '400px',
             initialX: coords[0],
             initialY: coords[1],
         }
