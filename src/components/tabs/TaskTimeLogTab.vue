@@ -29,10 +29,13 @@
 </script>
 
 <template>
-    <p>You are {{ task.isWorking ? '' : 'NOT' }} currently working on this task.</p>
     <p v-if="task.completed">This task is already completed!</p>
     <p><button :disabled="task.isWorking || task.completed" @click="timeIn">Time In</button> <button :disabled="!task.isWorking" @click="timeOut">Time Out</button></p>
-    <div class="log-container" v-for="log in task.logs" :key="log.id">
+    <div v-if="task.logs.length == 0">
+        <hr/>
+        <p style="text-align: center;">You haven't logged any work yet.</p>
+    </div>
+    <div class="log-container" v-else v-for="log in task.logs" :key="log.id">
         <hr/>
         <div class="time-container">
             <div>
