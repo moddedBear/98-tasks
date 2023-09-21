@@ -1,35 +1,17 @@
-# 98-tasks
+# 98 Tasks
 
-This template should help get you started developing with Vue 3 in Vite.
+A retro-themed task tracker.
 
-## Recommended IDE Setup
+![Screenshot of 98 Tasks showing the task table, task window, and new task creation window.](/screenshot.png)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Features
 
-## Customize configuration
+- Task table view and sorting
+- Time tracking
+- Add notes, todos, and blockers to tasks
+- Simulated desktop
+- Dated UI
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Planned Features/Improvements
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- Manual time log editing
