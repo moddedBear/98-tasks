@@ -8,6 +8,7 @@ A retro-themed task tracker.
 
 ## Features
 
+- Tasks are automatically saved to your browser local storage
 - Task table view and sorting
 - Time tracking
 - Add notes, todos, and blockers to tasks
@@ -17,3 +18,5 @@ A retro-themed task tracker.
 ## Planned Features/Improvements
 
 - Manual time log editing
+- Customization features
+- User settings
