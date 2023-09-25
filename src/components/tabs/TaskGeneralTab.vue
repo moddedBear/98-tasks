@@ -16,19 +16,6 @@
 
     const isEditing = ref(false)
 
-    function toggleEditing() {
-        if (!isEditing.value) {
-            editTitle.value = task.value.title
-            editDesc.value = task.value.description
-            editLinks.value = []
-            for (const link of task.value.links) {
-                editLinks.value.push(link)
-            }
-            editLinks.value.push('')
-        }
-        isEditing.value = !isEditing.value
-    }
-
     function removeTask() {
         store.tasks = store.tasks.filter((task) => {
             return task.id != props.taskId
@@ -89,7 +76,7 @@
     </div>
     <TaskGeneralEdit v-else :task-id="taskId" @dismiss="isEditing = false"/>
     <div v-if="!isEditing">
-        <p><button @click="toggleEditing">Edit</button> <button @click="remove">Remove</button></p>
+        <p><button @click="isEditing = true">Edit</button> <button @click="remove">Remove</button></p>
     </div>
 </template>
 
