@@ -22,6 +22,7 @@ import { Todo } from '../../classes'
         newBlockerText.value = ''
     }
     function save() {
+        if (newBlockerText.value.trim() == '') return
         const blocker = new Todo(newBlockerText.value)
         task.value.blockers.push(blocker)
         cancel()
@@ -42,10 +43,10 @@ import { Todo } from '../../classes'
     <div v-else>
         <div class="field-row-stacked">
             <label :for="`blocker-input-${task.id}`">New blocker</label>
-            <input type="text" v-model="newBlockerText" :id="`blocker-input-${task.id}`"/>
+            <input type="text" v-model="newBlockerText" :id="`blocker-input-${task.id}`" @keyup.enter="save"/>
         </div>
         <p>
-            <button @click="save">Save</button> <button @click="cancel">Cancel</button>
+            <button @click="save" :disabled="newBlockerText.trim() == ''">Save</button> <button @click="cancel">Cancel</button>
         </p>
     </div>
     <fieldset v-if="task.uncompletedBlockers.length > 0">

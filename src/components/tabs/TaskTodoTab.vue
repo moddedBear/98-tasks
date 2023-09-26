@@ -22,6 +22,7 @@ import { Todo } from '../../classes'
         newTodoText.value = ''
     }
     function save() {
+        if (newTodoText.value.trim() == '') return
         const todo = new Todo(newTodoText.value)
         task.value.todos.push(todo)
         cancel()
@@ -42,10 +43,10 @@ import { Todo } from '../../classes'
     <div v-else>
         <div class="field-row-stacked">
             <label :for="`todo-input-${task.id}`">New todo</label>
-            <input type="text" v-model="newTodoText" :id="`todo-input-${task.id}`"/>
+            <input type="text" v-model="newTodoText" :id="`todo-input-${task.id}`" @keyup.enter="save"/>
         </div>
         <p>
-            <button @click="save">Save</button> <button @click="cancel">Cancel</button>
+            <button @click="save" :disabled="newTodoText.trim() == ''">Save</button> <button @click="cancel">Cancel</button>
         </p>
     </div>
     <fieldset v-if="task.uncompletedTodos.length > 0">
