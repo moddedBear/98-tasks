@@ -2,7 +2,7 @@
     import { onMounted, reactive, ref, computed } from 'vue'
     import TaskRow from '../TaskRow.vue';
     import { store } from '../../store'
-    import { timeDateString } from '../../util'
+    import { dateTimeString } from '../../util'
 
     const completedTasks = computed(() => {
         return store.tasks.filter((task) => {
@@ -21,7 +21,7 @@
 
     function updateNow() {
         const n = new Date()
-        now.value = timeDateString(n)
+        now.value = dateTimeString(n)
     }
 
     function confirmClearCompleted() {

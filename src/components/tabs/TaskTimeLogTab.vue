@@ -2,7 +2,7 @@
     import { computed } from 'vue'
     import { store } from '../../store'
     import { Log } from '../../classes'
-    import { timeDateString } from '../../util'
+    import { dateTimeString } from '../../util'
 
     const props = defineProps({
         taskId: {
@@ -39,10 +39,10 @@
         <hr/>
         <div class="time-container">
             <div>
-                <p>In <span class="sunken-panel">{{ timeDateString(log.start) }}</span></p>
+                <p>In <span class="sunken-panel">{{ dateTimeString(log.start) }}</span></p>
             </div>
             <div>
-                <p>Out <span class="sunken-panel">{{ log.end ? timeDateString(log.end) : '—' }}</span></p>
+                <p>Out <span class="sunken-panel">{{ log.end ? dateTimeString(log.end) : '—' }}</span></p>
             </div>
         </div>
         <div class="field-row">

@@ -2,7 +2,7 @@
     import { computed, ref } from 'vue'
     import { store } from '../../store'
     import { Note } from '../../classes'
-    import { timeDateString } from '../../util'
+    import { dateTimeString } from '../../util'
 
     const props = defineProps({
         taskId: {
@@ -53,7 +53,7 @@
     <div class="notes-container" v-for="note in task.notes" :key="note.id">
         <hr/>
         <p>
-            {{ timeDateString(note.date) }} <span style="float: right;"><a @click="remove(note.id)" style="color: red">X</a></span>
+            {{ dateTimeString(note.date) }} <span style="float: right;"><a @click="remove(note.id)" style="color: red">X</a></span>
         </p>
         <p>{{ note.text }}</p>
     </div>

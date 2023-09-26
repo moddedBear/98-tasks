@@ -20,4 +20,8 @@ function timeDateString(date) {
     return `${timeString(date)} — ${dateString(date)}`
 }
 
-export { timeString, dateString, timeDateString }
+function dateTimeString(date) {
+    return `${dateString(date)} — ${timeString(date)}`
+}
+
+export { timeString, dateString, timeDateString, dateTimeString }
