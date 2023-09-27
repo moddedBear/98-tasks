@@ -1,9 +1,11 @@
 function timeString(date) {
-    let ampm = 'AM'
     let hour = date.getHours()
-    if (hour > 12) {
+    const ampm = hour >= 12 ? 'PM' : 'AM'
+    if (hour == 0) {
+        hour = 12
+    }
+    else if (hour > 12) {
         hour -= 12
-        ampm = 'PM'
     }
     let minutes = date.getMinutes()
     if (minutes < 10) {
