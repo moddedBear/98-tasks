@@ -23,6 +23,7 @@
         newNoteText.value = ''
     }
     function save() {
+        if (newNoteText.value.trim() == '') return
         const note = new Note(newNoteText.value)
         task.value.notes.unshift(note)
         cancel()
@@ -47,7 +48,7 @@
             <textarea :id="`note-textarea-${task.id}`" rows="3" v-model="newNoteText"></textarea>
         </div>
         <p>
-            <button @click="save">Save</button> <button @click="cancel">Cancel</button>
+            <button @click="save" :disabled="newNoteText.trim() == ''">Save</button> <button @click="cancel">Cancel</button>
         </p>
     </div>
     <div class="notes-container" v-for="note in task.notes" :key="note.id">
