@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, toRaw } from 'vue'
+import { onMounted, ref, computed, toRaw } from 'vue'
 import { store } from '../store'
 import WelcomeScreen from './screens/WelcomeScreen.vue'
 import TaskScreen from './screens/TaskScreen.vue'
@@ -48,6 +48,25 @@ const posY = ref(props.initialY)
 const minimized = ref(false)
 const height = ref(0)
 
+const titleBarStyle = computed(() => {
+  const settings = store.settings.customization.titleBar
+  if (settings.use) {
+    return {
+      background: `linear-gradient(90deg, ${settings.color1}, ${settings.color2})`
+    }
+  }
+  return {}
+})
+const titleBarTextStyle = computed(() => {
+  const settings = store.settings.customization.titleBar
+  if (settings.use) {
+    return {
+      color: settings.textColor
+    }
+  }
+  return {}
+})
+
 defineExpose({ height, props })
 
 onMounted(() => {
@@ -90,8 +109,10 @@ function close() {
     @mousedown="$emit('raise', id)"
     :style="{ width: width, top: posY + 'px', left: posX + 'px', zIndex: height }"
   >
-    <div class="title-bar" @mousedown.self="startDrag">
-      <div class="title-bar-text" @mousedown.self="startDrag">{{ title }}</div>
+    <div class="title-bar" :style="titleBarStyle" @mousedown.self="startDrag">
+      <div class="title-bar-text" :style="titleBarTextStyle" @mousedown.self="startDrag">
+        {{ title }}
+      </div>
       <div class="title-bar-controls">
         <button aria-label="Minimize" @click="minimize"></button>
         <button aria-label="Close" @click="close" v-if="screen != 'welcome'"></button>
