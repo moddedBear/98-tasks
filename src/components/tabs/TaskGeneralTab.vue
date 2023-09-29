@@ -1,5 +1,5 @@
 <script setup>
-    import { computed, ref, watchEffect } from 'vue'
+    import { computed, ref } from 'vue'
     import { store } from '../../store'
     import TaskGeneralEdit from '../TaskGeneralEdit.vue';
 

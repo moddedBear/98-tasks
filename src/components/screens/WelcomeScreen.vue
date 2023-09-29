@@ -1,5 +1,5 @@
 <script setup>
-    import { onMounted, reactive, ref, computed } from 'vue'
+    import { onMounted, ref, computed } from 'vue'
     import TaskRow from '../TaskRow.vue';
     import { store } from '../../store'
     import { dateTimeString } from '../../util'
@@ -114,7 +114,7 @@
 </script>
 
 <template>
-    <p><button @click="store.spawnNewTaskWindow">New task</button> <button @click="confirmClearCompleted" :disabled="completedTasks.length == 0">Clear completed</button></p>
+  <p><button @click="store.spawnNewTaskWindow">New task</button> <button @click="confirmClearCompleted" :disabled="completedTasks.length == 0">Clear completed</button> <button @click="store.spawnSettingsWindow" style="float: right">Settings</button></p>
 
     <div class="sunken-panel" style="height: 150px">
         <table class="interactive">

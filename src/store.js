@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 export const store = reactive({
     windows: [],
     tasks: [],
+    settings: {},
     cursorX: 0,
     cursorY: 0,
     getNewWindowCoords() {
@@ -46,6 +47,18 @@ export const store = reactive({
             screen: 'task',
             screenProps: screenProps,
             title: title,
+            width: '500px',
+            initialX: coords[0],
+            initialY: coords[1],
+        }
+        this.windows.push(window)
+    },
+    spawnSettingsWindow() {
+        const coords = this.getNewWindowCoords()
+        const window = {
+            id: uuidv4(),
+            screen: 'settings',
+            title: 'Settings',
             width: '500px',
             initialX: coords[0],
             initialY: coords[1],

@@ -2,25 +2,18 @@
   import { ref, onMounted, watchEffect, isRef, isReadonly } from 'vue';
   import TheWindow from './components/TheWindow.vue'
   import { store } from './store.js'
-  import { Task, Log } from './classes';
+  import { Task, Settings } from './classes';
 
   const windows = ref([])
 
   onMounted(() => {
-    // const task1 = new Task()
-    // task1.title = 'Task 1'
-    // task1.completed = true
-    // const task2 = new Task()
-    // task2.title = 'Task 2'
-    // const task3 = new Task()
-    // task3.title = 'Task 3'
-    // task3.logs.value.push(new Log())
-    // store.tasks.push(task1)
-    // store.tasks.push(task2)
-    // store.tasks.push(task3)
+    loadSettings()
     loadTasks()
     watchEffect(() => {
       window.localStorage.setItem("tasks", JSON.stringify(store.tasks))
+    })
+    watchEffect(() => {
+      window.localStorage.setItem('settings', JSON.stringify(store.settings))
     })
     refreshHours()
     setInterval(refreshHours, 1000 * 60)
@@ -57,6 +50,13 @@
       newTasks.push(newTask)
     }
     store.tasks = newTasks
+  }
+
+  function loadSettings() {
+    const loadedSettings = JSON.parse(window.localStorage.getItem('settings'))
+    const newSettings = new Settings()
+    const settings = {...newSettings, ...loadedSettings}
+    store.settings = settings
   }
 
   function refreshHours() {

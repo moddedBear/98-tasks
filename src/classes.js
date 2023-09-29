@@ -81,4 +81,35 @@ const Todo = class {
     }
 }
 
-export {Task, Log, Note, Todo}
+const Settings = class {
+    behavior = {
+        openAfterCreate: false,
+        confirmTaskDeletion: true,
+    }
+    customization = {
+        background: {
+            use: false,
+            type: 'color',  // color, image, gradient
+            color: '#008080',
+            image: '',
+            gradient: {
+                angle: 90,
+                color1: 'navy',
+                color2: '#1084d0',
+            }
+        },
+        titleBar: {
+            use: false,
+            color1: 'navy',
+            color2: '#1084d0',
+            textColor: 'white',
+        },
+        window: {
+            use: false,
+            background: 'silver',
+            textColor: '#222',
+        },
+    }
+}
+
+export {Task, Log, Note, Todo, Settings}
