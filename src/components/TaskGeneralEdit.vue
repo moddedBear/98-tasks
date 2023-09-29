@@ -1,5 +1,5 @@
 <script setup>
-    import { computed, onMounted, ref, watchEffect } from 'vue'
+    import { computed, onMounted, ref } from 'vue'
     import { store } from '../store'
     import { Task } from '../classes'
 
@@ -43,6 +43,9 @@
         })
         if (isNewTask.value) {
             store.tasks.push(target)
+            if (store.settings.behavior.openAfterCreate) {
+                store.spawnTaskWindow(target.id)
+            }
         }
         emit('dismiss')
     }

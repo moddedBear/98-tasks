@@ -23,6 +23,10 @@
     }
 
     function remove() {
+        if (!store.settings.behavior.confirmTaskDeletion) {
+            removeTask()
+            return
+        }
         const title = 'Remove task?'
         const text = `Are you sure you want to remove the task "${task.value.title}"?`
         store.spawnYesNoDialogWindow(title, text, removeTask)
