@@ -92,7 +92,7 @@ const Settings = class {
       color: '#008080',
       image: {
         url: '',
-        cover: false
+        cover: true
       },
       gradient: {
         angle: 90,
@@ -105,11 +105,6 @@ const Settings = class {
       color1: 'navy',
       color2: '#1084d0',
       textColor: 'white'
-    },
-    window: {
-      use: false,
-      background: 'silver',
-      textColor: '#222'
     }
   }
 }

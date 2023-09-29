@@ -3,7 +3,6 @@ import { shallowRef } from 'vue'
 import SettingsBehaviorTab from '../tabs/SettingsBehaviorTab.vue'
 import SettingsBackgroundTab from '../tabs/SettingsBackgroundTab.vue'
 import SettingsTitleBarTab from '../tabs/SettingsTitleBarTab.vue'
-import SettingsWindowTab from '../tabs/SettingsWindowTab.vue'
 
 const screens = [
   {
@@ -20,10 +19,6 @@ const screens = [
       {
         name: 'Title Bar',
         content: SettingsTitleBarTab
-      },
-      {
-        name: 'Window',
-        content: SettingsWindowTab
       }
     ]
   }
