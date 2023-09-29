@@ -13,10 +13,9 @@ A retro-themed task tracker.
 - Time tracking
 - Add notes, todos, and blockers to tasks
 - Simulated desktop
+- User settings and customization
 - Dated UI
 
 ## Planned Features/Improvements
 
 - Manual time log editing
-- Customization features
-- User settings
