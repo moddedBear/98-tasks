@@ -90,7 +90,10 @@ const Settings = class {
       use: false,
       type: 'color', // color, image, gradient
       color: '#008080',
-      image: '',
+      image: {
+        url: '',
+        cover: false
+      },
       gradient: {
         angle: 90,
         color1: 'navy',

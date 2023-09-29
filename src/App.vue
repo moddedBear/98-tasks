@@ -1,10 +1,35 @@
 <script setup>
-import { ref, onMounted, watchEffect, isRef, isReadonly } from 'vue'
+import { ref, computed, onMounted, watchEffect, isRef, isReadonly } from 'vue'
 import TheWindow from './components/TheWindow.vue'
 import { store } from './store.js'
 import { Task, Settings } from './classes'
 
 const windows = ref([])
+
+const backgroundStyle = computed(() => {
+  if (store.settings.customization) {
+    const backgroundSetting = store.settings.customization.background
+    if (backgroundSetting.use) {
+      if (backgroundSetting.type == 'color') {
+        return { backgroundColor: backgroundSetting.color }
+      }
+      if (backgroundSetting.type == 'gradient') {
+        return {
+          backgroundImage: `linear-gradient(${backgroundSetting.gradient.angle}deg, ${backgroundSetting.gradient.color1}, ${backgroundSetting.gradient.color2})`
+        }
+      }
+      if (backgroundSetting.type == 'image') {
+        console.log(backgroundSetting)
+        let style = { backgroundImage: `url(${backgroundSetting.image.url})` }
+        if (backgroundSetting.image.cover) {
+          style.backgroundSize = 'cover'
+        }
+        return style
+      }
+    }
+  }
+  return {}
+})
 
 onMounted(() => {
   loadSettings()
@@ -91,7 +116,7 @@ function logCursorCoords(e) {
 </script>
 
 <template>
-  <div id="desktop" @mousemove="logCursorCoords">
+  <div id="desktop" :style="backgroundStyle" @mousemove="logCursorCoords">
     <template v-for="window in store.windows" :key="window.id">
       <component
         :is="TheWindow"
@@ -112,7 +137,7 @@ function logCursorCoords(e) {
 
 <style>
 body {
-  background-color: #008080;
+  background: #008080;
 }
 #desktop {
   position: absolute;

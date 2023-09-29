@@ -52,7 +52,11 @@ const settings = ref(store.settings.customization.background)
     <div v-else-if="settings.type == 'image'">
       <div class="field-row-stacked">
         <label for="imageText">Image URL</label>
-        <input type="text" id="imageText" v-model="settings.image" />
+        <input type="text" id="imageText" v-model.lazy="settings.image.url" />
+      </div>
+      <div class="field-row">
+        <input type="checkbox" id="coverCheckbox" v-model="settings.image.cover" />
+        <label for="coverCheckbox">Cover</label>
       </div>
     </div>
   </fieldset>
