@@ -1,9 +1,9 @@
 <script setup>
-    import TaskGeneralEdit from '../TaskGeneralEdit.vue';
+import TaskGeneralEdit from '../TaskGeneralEdit.vue'
 
-    const emit = defineEmits(['close'])
+const emit = defineEmits(['close'])
 </script>
 
 <template>
-    <TaskGeneralEdit @dismiss="$emit('close')"/>
+  <TaskGeneralEdit @dismiss="$emit('close')" />
 </template>

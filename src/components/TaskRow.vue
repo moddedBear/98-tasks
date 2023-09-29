@@ -1,38 +1,38 @@
 <script setup>
-    import { computed } from 'vue';
-    import { Task } from '../classes'
-    import { store } from '../store'
+import { computed } from 'vue'
+import { Task } from '../classes'
+import { store } from '../store'
 
-    const props = defineProps({
-        task: {
-            type: Task,
-            required: true,
-        }
-    })
+const props = defineProps({
+  task: {
+    type: Task,
+    required: true
+  }
+})
 
-    const status = computed(() => {
-        if (props.task.completed) return '✔️'
-        if (props.task.isWorking) return '🟢'
-        return '🔴'
-    })
+const status = computed(() => {
+  if (props.task.completed) return '✔️'
+  if (props.task.isWorking) return '🟢'
+  return '🔴'
+})
 
-    function openTask() {
-        store.spawnTaskWindow(props.task.id)
-    }
+function openTask() {
+  store.spawnTaskWindow(props.task.id)
+}
 </script>
 
 <template>
-    <tr @click="openTask">
-        <td class="center">{{ status }}</td>
-        <td>{{ task.title }}</td>
-        <td class="center">{{ task.hours }}</td>
-        <td class="center">{{ task.uncompletedTodos.length }}</td>
-        <td class="center">{{ task.uncompletedBlockers.length }}</td>
-    </tr>
+  <tr @click="openTask">
+    <td class="center">{{ status }}</td>
+    <td>{{ task.title }}</td>
+    <td class="center">{{ task.hours }}</td>
+    <td class="center">{{ task.uncompletedTodos.length }}</td>
+    <td class="center">{{ task.uncompletedBlockers.length }}</td>
+  </tr>
 </template>
 
 <style scoped>
-    .center {
-        text-align: center;
-    }
+.center {
+  text-align: center;
+}
 </style>

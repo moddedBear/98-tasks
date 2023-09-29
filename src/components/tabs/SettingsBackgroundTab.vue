@@ -10,7 +10,7 @@ const settings = ref(store.settings.customization.background)
     <input type="checkbox" id="useCheckbox" v-model="settings.use" />
     <label for="useCheckbox">Use custom background</label>
   </p>
-  <p>
+  <p></p>
   <fieldset>
     <legend>Type</legend>
     <div class="field-row">
@@ -26,8 +26,7 @@ const settings = ref(store.settings.customization.background)
       <label for="imageTypeRadio">Image</label>
     </div>
   </fieldset>
-  </p>
-  <p>
+  <p></p>
   <fieldset>
     <legend>Background</legend>
     <div v-if="settings.type == 'color'">
@@ -39,7 +38,7 @@ const settings = ref(store.settings.customization.background)
     <div v-else-if="settings.type == 'gradient'">
       <div class="field-row">
         <label for="angleRange">Angle</label>
-        <input type="range" id="angleRange" min="0" max="360" v-model="settings.gradient.angle"/>
+        <input type="range" id="angleRange" min="0" max="360" v-model="settings.gradient.angle" />
       </div>
       <div class="field-row">
         <label for="color1Text">Color 1</label>
@@ -53,12 +52,9 @@ const settings = ref(store.settings.customization.background)
     <div v-else-if="settings.type == 'image'">
       <div class="field-row-stacked">
         <label for="imageText">Image URL</label>
-        <input type="text" id="imageText" v-model="settings.image"/>
+        <input type="text" id="imageText" v-model="settings.image" />
       </div>
     </div>
   </fieldset>
-  </p>
-  <p>
-    Colors can be any valid CSS color value.
-  </p>
+  <p>Colors can be any valid CSS color value.</p>
 </template>
