@@ -8,7 +8,7 @@ const settings = ref(store.settings.behavior)
 <template>
   <p>
     <input type="checkbox" id="openAfterCreateCheckbox" v-model="settings.openAfterCreate" />
-    <label for="openAfterCreateCheckbox">Open task window after new task creation</label>
+    <label for="openAfterCreateCheckbox">Open task window after a new task is created</label>
   </p>
   <p>
     <input

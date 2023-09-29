@@ -3,6 +3,7 @@ import { shallowRef } from 'vue'
 import SettingsBehaviorTab from '../tabs/SettingsBehaviorTab.vue'
 import SettingsBackgroundTab from '../tabs/SettingsBackgroundTab.vue'
 import SettingsTitleBarTab from '../tabs/SettingsTitleBarTab.vue'
+import SettingsDataTab from '../tabs/SettingsDataTab.vue'
 
 const screens = [
   {
@@ -21,6 +22,10 @@ const screens = [
         content: SettingsTitleBarTab
       }
     ]
+  },
+  {
+    name: 'Data',
+    content: SettingsDataTab
   }
 ]
 const activeScreen = shallowRef(screens[0].content)

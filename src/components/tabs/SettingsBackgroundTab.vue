@@ -56,7 +56,7 @@ const settings = ref(store.settings.customization.background)
       </div>
       <div class="field-row">
         <input type="checkbox" id="coverCheckbox" v-model="settings.image.cover" />
-        <label for="coverCheckbox">Cover</label>
+        <label for="coverCheckbox">Fit to screen</label>
       </div>
     </div>
   </fieldset>
