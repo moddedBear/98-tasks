@@ -48,8 +48,7 @@ function remove(id) {
       <textarea :id="`note-textarea-${task.id}`" rows="3" v-model="newNoteText"></textarea>
     </div>
     <p>
-      <button @click="save" :disabled="newNoteText.trim() == ''">Save</button>
-      <button @click="cancel">Cancel</button>
+      <button @click="save" :disabled="newNoteText.trim() == ''">Save</button> <button @click="cancel">Cancel</button>
     </p>
   </div>
   <div class="notes-container" v-for="note in task.notes" :key="note.id">

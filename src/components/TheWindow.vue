@@ -114,8 +114,7 @@ function close() {
         {{ title }}
       </div>
       <div class="title-bar-controls">
-        <button aria-label="Minimize" @click="minimize"></button>
-        <button aria-label="Close" @click="close" v-if="screen != 'welcome'"></button>
+        <button aria-label="Minimize" @click="minimize"></button> <button aria-label="Close" @click="close" v-if="screen != 'welcome'"></button>
       </div>
     </div>
     <div class="window-body" v-show="!minimized">

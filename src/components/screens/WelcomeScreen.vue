@@ -121,10 +121,8 @@ onMounted(() => {
 
 <template>
   <p>
-    <button @click="store.spawnNewTaskWindow">New task</button>
-    <button @click="confirmClearCompleted" :disabled="completedTasks.length == 0">
-      Clear completed
-    </button>
+    <button @click="store.spawnNewTaskWindow">New task</button> <button @click="confirmClearCompleted"
+      :disabled="completedTasks.length == 0">Clear completed</button>
     <button @click="store.spawnSettingsWindow" style="float: right">Settings</button>
   </p>
 
@@ -132,13 +130,9 @@ onMounted(() => {
     <table class="interactive">
       <thead>
         <tr>
-          <th
-            v-for="(header, index) in headers"
-            @click="setSortingMethod(index)"
-            :class="{ 'full-width': header == 'Title' }"
-          >
-            <span class="sort-indicator" v-if="index == activeSort">{{ sortIndicator(index) }}</span
-            >{{ header }}
+          <th v-for="(header, index) in headers" @click="setSortingMethod(index)"
+            :class="{ 'full-width': header == 'Title' }">
+            <span class="sort-indicator" v-if="index == activeSort">{{ sortIndicator(index) }}</span>{{ header }}
           </th>
         </tr>
       </thead>
@@ -159,9 +153,11 @@ onMounted(() => {
 th {
   cursor: pointer;
 }
+
 th.full-width {
   width: 100%;
 }
+
 span.sort-indicator {
   margin-right: 2px;
 }

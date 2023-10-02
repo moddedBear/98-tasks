@@ -71,17 +71,12 @@ function adjustLinks(index) {
   </div>
   <div class="field-row-stacked">
     <label>Links</label>
-    <input
-      type="text"
-      v-for="(link, index) in editLinks"
-      v-model="editLinks[index]"
-      @input="adjustLinks(index)"
-    />
+    <input type="text" v-for="(link, index) in editLinks" v-model="editLinks[index]" @input="adjustLinks(index)" />
   </div>
   <div>
     <p>
-      <button @click="save" :disabled="editTitle.trim() == ''">Save</button>
-      <button @click="$emit('dismiss')">Cancel</button>
+      <button @click="save" :disabled="editTitle.trim() == ''">Save</button> <button
+        @click="$emit('dismiss')">Cancel</button>
     </p>
   </div>
 </template>

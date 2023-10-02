@@ -37,10 +37,8 @@ function clearCompleted() {
 <template>
   <div v-if="!isEditing">
     <p>
-      <button @click="isEditing = true">New todo</button>
-      <button @click="clearCompleted" :disabled="task.completedTodos.length == 0">
-        Clear completed
-      </button>
+      <button @click="isEditing = true">New todo</button> <button @click="clearCompleted"
+        :disabled="task.completedTodos.length == 0">Clear completed</button>
     </p>
   </div>
   <div v-else>
@@ -49,8 +47,7 @@ function clearCompleted() {
       <input type="text" v-model="newTodoText" :id="`todo-input-${task.id}`" @keyup.enter="save" />
     </div>
     <p>
-      <button @click="save" :disabled="newTodoText.trim() == ''">Save</button>
-      <button @click="cancel">Cancel</button>
+      <button @click="save" :disabled="newTodoText.trim() == ''">Save</button> <button @click="cancel">Cancel</button>
     </p>
   </div>
   <fieldset v-if="task.uncompletedTodos.length > 0">

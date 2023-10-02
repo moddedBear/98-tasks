@@ -31,8 +31,8 @@ function timeOut() {
 <template>
   <p v-if="task.completed">This task is already completed!</p>
   <p>
-    <button :disabled="task.isWorking || task.completed" @click="timeIn">Time In</button>
-    <button :disabled="!task.isWorking" @click="timeOut">Time Out</button>
+    <button :disabled="task.isWorking || task.completed" @click="timeIn">Time In</button> <button
+      :disabled="!task.isWorking" @click="timeOut">Time Out</button>
   </p>
   <div v-if="task.logs.length == 0">
     <hr />

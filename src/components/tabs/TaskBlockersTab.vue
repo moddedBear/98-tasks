@@ -37,25 +37,17 @@ function clearCompleted() {
 <template>
   <div v-if="!isEditing">
     <p>
-      <button @click="isEditing = true">New blocker</button>
-      <button @click="clearCompleted" :disabled="task.completedBlockers.length == 0">
-        Clear resolved
-      </button>
+      <button @click="isEditing = true">New blocker</button> <button @click="clearCompleted"
+        :disabled="task.completedBlockers.length == 0">Clear resolved</button>
     </p>
   </div>
   <div v-else>
     <div class="field-row-stacked">
       <label :for="`blocker-input-${task.id}`">New blocker</label>
-      <input
-        type="text"
-        v-model="newBlockerText"
-        :id="`blocker-input-${task.id}`"
-        @keyup.enter="save"
-      />
+      <input type="text" v-model="newBlockerText" :id="`blocker-input-${task.id}`" @keyup.enter="save" />
     </div>
     <p>
-      <button @click="save" :disabled="newBlockerText.trim() == ''">Save</button>
-      <button @click="cancel">Cancel</button>
+      <button @click="save" :disabled="newBlockerText.trim() == ''">Save</button> <button @click="cancel">Cancel</button>
     </p>
   </div>
   <fieldset v-if="task.uncompletedBlockers.length > 0">
